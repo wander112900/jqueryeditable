@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>jQuery插件</title>  
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+    <script type="text/javascript" src="jquery.edittable.js"></script>
+    <script type="text/javascript">
+    	$(document).ready(function() {
+            $(".edit").editable({
+            	onSubmit:function(data){
+            		var t= $(this);
+            		if(confirm("真的要修改吗？")){
+	            		alert(t.attr('nid'));
+            		}else{
+            			t.html(data.previous);
+            			//$(this).html(data.previous);
+            		}
+            	}
+            });
+           
+           $(".d").editable({
+           		type:"select",
+           		options:{'选项1':'值1','选21':'值2','选项3':'值3'},
+           		onSubmit:function(data){
+            		var t= $(this);
+            		if(confirm("真的要修改吗？")){
+	            		alert(data.current);
+            		}else{
+            			t.html(data.previous);
+            		}
+            	}
+           	});
+        });
+    </script>
+</head>
+<body>
+<h1>普通TXT修改</h1>
+    <ul>
+    	<li><span class="edit" nid='1'>dfgkljdfll1</span></li>
+    	<li><span class="edit" nid='2'>dfgkljdfll2</span></li>
+		<li><span class="edit" nid='3'>dfgkljdfll3</span></li>
+    	<li><span class="edit" nid='4'>dfgkljdfll4</span></li>
+    </ul>
+<h1>下拉</h1>
+点击修改：<span class="d" pp='test'>编辑</span>
+</body>
+</html>
